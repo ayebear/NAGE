@@ -8,9 +8,9 @@
 #include <functional>
 #include <string>
 #include <vector>
-#include "colorcode.h"
-#include "spriteloader.h"
-#include "actionhandler.h"
+#include "nage/graphics/colorcode.h"
+#include "nage/graphics/spriteloader.h"
+#include "nage/actions/actionhandler.h"
 
 /*
 An SFML menu designed for use with games.

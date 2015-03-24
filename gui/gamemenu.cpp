@@ -2,7 +2,7 @@
 // This code is licensed under LGPLv3, see LICENSE.txt for details.
 
 #include "gamemenu.h"
-#include "vectors.h"
+#include "nage/graphics/vectors.h"
 #include "configfile.h"
 #include <iostream>
 
