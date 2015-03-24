@@ -10,6 +10,9 @@
 #include <SFML/Audio.hpp>
 #include "configfile.h"
 
+namespace ng
+{
+
 /*
 This class handles loading and playing sound effects.
 
@@ -56,5 +59,7 @@ class SoundPlayer
         float volume;
         static const cfg::File::ConfigMap defaultOptions;
 };
+
+}
 
 #endif

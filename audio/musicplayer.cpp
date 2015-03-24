@@ -5,6 +5,9 @@
 #include <iostream>
 #include <algorithm>
 
+namespace ng
+{
+
 const cfg::File::ConfigMap MusicPlayer::defaultOptions = {
 {"", {
     {"volume", cfg::makeOption(DEFAULT_VOLUME, 0, 100)},
@@ -178,4 +181,6 @@ void MusicPlayer::shuffleSongs()
             }
         }
     }
+}
+
 }

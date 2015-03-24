@@ -7,6 +7,9 @@
 #include <string>
 #include <SFML/Graphics/Color.hpp>
 
+namespace ng
+{
+
 /*
 A small class for storing a color code in a format like #00FF00 or #FFF.
 Also converts between that and the equivalent SFML color objects.
@@ -34,5 +37,7 @@ class ColorCode
         sf::Color color;
         std::string colorStr;
 };
+
+}
 
 #endif

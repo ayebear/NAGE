@@ -6,9 +6,19 @@
 
 #include <SFML/Graphics/View.hpp>
 
+namespace ng
+{
+
+namespace views
+{
+
 /// Some helper functions for using views
 sf::Vector2f getViewPos(const sf::Vector2f& center, const sf::Vector2f& size);
 sf::Vector2f getViewPos(const sf::View& view);
 sf::FloatRect getViewRect(const sf::View& view);
+
+}
+
+}
 
 #endif

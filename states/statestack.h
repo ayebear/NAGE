@@ -11,6 +11,9 @@
 #include "basestate.h"
 #include "stateevent.h"
 
+namespace ng
+{
+
 /*
 This class handles the deallocation/starting/changing of BaseState sub-classes.
 This class is also generic, but depends on having the BaseState class and StateEvent class.
@@ -45,6 +48,8 @@ template <typename T, typename... Args>
 void StateStack::add(const std::string& name, Args&&... args)
 {
     statePtrs[name] = std::make_unique<T>(std::forward<Args>(args)...);
+}
+
 }
 
 #endif

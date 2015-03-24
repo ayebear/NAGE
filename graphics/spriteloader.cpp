@@ -5,6 +5,9 @@
 #include "configfile.h"
 #include <iostream>
 
+namespace ng
+{
+
 std::map<std::string, sf::Texture> SpriteLoader::textures;
 
 SpriteLoader::SpriteLoader()
@@ -83,4 +86,6 @@ sf::Texture& SpriteLoader::loadTexture(const std::string& filename, bool& status
     else
         std::cout << "Already loaded, skipping: " << filename << "\n";
     return texture;
+}
+
 }

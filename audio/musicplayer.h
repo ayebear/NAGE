@@ -10,6 +10,9 @@
 #include <SFML/Audio.hpp>
 #include "configfile.h"
 
+namespace ng
+{
+
 /*
 This class handles loading and playing sets of music.
 The filenames of the music files are stored in a config file.
@@ -90,5 +93,7 @@ class MusicPlayer
 
         static const cfg::File::ConfigMap defaultOptions;
 };
+
+}
 
 #endif

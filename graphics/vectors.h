@@ -11,10 +11,13 @@
 Contains commonly used vector math for SFML's 2D vectors.
 */
 
+namespace ng
+{
+
 namespace vectors
 {
 
-const double PI = 3.141592653589793238463;
+constexpr double PI = 3.141592653589793238463;
 
 // Calculates the length of a vector
 template <typename T>
@@ -67,6 +70,8 @@ inline double rotateAngle(double angle, double amount)
 {
     return fmod(angle + amount, 360.0);
 }
+
+};
 
 }
 

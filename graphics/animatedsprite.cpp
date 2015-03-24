@@ -5,6 +5,9 @@
 #include <iostream>
 #include "spriteloader.h"
 
+namespace ng
+{
+
 AnimatedSprite::AnimatedSprite()
 {
     status = Stopped;
@@ -147,4 +150,6 @@ void AnimatedSprite::draw(sf::RenderTarget& target, sf::RenderStates states) con
 {
     states.transform *= getTransform();
     target.draw(sprite, states);
+}
+
 }

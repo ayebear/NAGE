@@ -6,6 +6,9 @@
 #include "configfile.h"
 #include <iostream>
 
+namespace ng
+{
+
 GameMenu::GameMenu(sf::RenderWindow& window, const std::string& configFilename):
     window(window),
     currentItem(NO_SELECTION),
@@ -225,4 +228,6 @@ GameMenu::MenuItem::MenuItem(const std::string& name, CallbackType callback):
     dtText(0)
 {
     label.setString(name);
+}
+
 }

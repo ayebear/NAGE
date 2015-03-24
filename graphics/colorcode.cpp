@@ -6,6 +6,9 @@
 #include <iomanip>
 #include <iostream>
 
+namespace ng
+{
+
 ColorCode::ColorCode()
 {
     setColor(sf::Color::Black);
@@ -120,4 +123,6 @@ unsigned ColorCode::hexStrToInt(const std::string& str) const
     ss << std::hex << str;
     ss >> out;
     return out;
+}
+
 }

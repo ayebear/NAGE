@@ -7,6 +7,9 @@
 #include <map>
 #include <SFML/Graphics.hpp>
 
+namespace ng
+{
+
 /*
 This class manages a container of sf::View objects.
 It can apply transformations to all of the views in the container, based on the specified scale amount.
@@ -38,5 +41,7 @@ class Camera
 
         std::map<std::string, ScaledView> views;
 };
+
+}
 
 #endif

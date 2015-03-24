@@ -4,6 +4,9 @@
 #include "statestack.h"
 #include <iostream>
 
+namespace ng
+{
+
 StateStack::StateStack()
 {
 }
@@ -92,4 +95,6 @@ BaseState* StateStack::getState(const std::string& name)
     if (found != statePtrs.end())
         return found->second.get();
     return nullptr;
+}
+
 }

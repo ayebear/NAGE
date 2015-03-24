@@ -3,6 +3,9 @@
 
 #include "camera.h"
 
+namespace ng
+{
+
 Camera::Camera()
 {
 }
@@ -39,4 +42,6 @@ void Camera::setCenter(const sf::Vector2f& center)
         }
         view.second.view.setCenter(center.x * scale + offset.x, center.y * scale + offset.y);
     }
+}
+
 }

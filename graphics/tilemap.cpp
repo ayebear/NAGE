@@ -5,6 +5,9 @@
 #include "configfile.h"
 #include <iostream>
 
+namespace ng
+{
+
 TileMap::TileMap()
 {
     currentLayer = nullptr;
@@ -171,4 +174,6 @@ void TileMap::applyColor()
         for (unsigned i = 0; i < layer.second.vertices.getVertexCount(); ++i)
             layer.second.vertices[i].color = vertexColor;
     }
+}
+
 }

@@ -12,6 +12,9 @@
 #include "nage/graphics/spriteloader.h"
 #include "nage/actions/actionhandler.h"
 
+namespace ng
+{
+
 /*
 An SFML menu designed for use with games.
 You can configure various settings in the config file.
@@ -119,5 +122,7 @@ class GameMenu: public sf::Drawable
         // Calculated settings
         sf::Vector2f firstButton;
 };
+
+}
 
 #endif

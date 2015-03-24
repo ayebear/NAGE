@@ -8,6 +8,9 @@
 #include <map>
 #include <SFML/Graphics.hpp>
 
+namespace ng
+{
+
 /*
 TODO:
     Change the order of stored vertices so they are contiguous (left to right)
@@ -112,6 +115,8 @@ template <typename T1, typename T2>
 sf::Vector2<T1> TileMap::getCenterPoint(const sf::Vector2<T2>& pos) const
 {
     return getCenterPoint<T1>(static_cast<T1>(pos.x), static_cast<T1>(pos.y));
+}
+
 }
 
 #endif

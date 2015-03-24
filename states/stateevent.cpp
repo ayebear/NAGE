@@ -3,8 +3,13 @@
 
 #include "stateevent.h"
 
+namespace ng
+{
+
 void StateEvent::reset()
 {
     command = Continue;
     name.clear();
+}
+
 }

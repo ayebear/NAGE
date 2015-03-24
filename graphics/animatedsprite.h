@@ -10,6 +10,9 @@
 #include <SFML/Graphics.hpp>
 #include "configfile.h"
 
+namespace ng
+{
+
 /*
 This class handles animating a sprite with a texture of frames.
 Multiple animation sets are supported, each identified by a string.
@@ -75,5 +78,7 @@ class AnimatedSprite: public sf::Drawable, public sf::Transformable
         int status; // Playing, stopped, paused
         int currentFrame;
 };
+
+}
 
 #endif

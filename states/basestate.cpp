@@ -3,6 +3,9 @@
 
 #include "basestate.h"
 
+namespace ng
+{
+
 const float BaseState::dtMax = 1.0f / 15.0f;
 
 // This fuction is used as the main loop in all game states.
@@ -26,4 +29,6 @@ const StateEvent& BaseState::start()
         handleEvents();
     }
     return stateEvent;
+}
+
 }

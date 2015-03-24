@@ -6,6 +6,9 @@
 
 #include <string>
 
+namespace ng
+{
+
 struct StateEvent
 {
     // The state manager takes action based on this
@@ -26,5 +29,7 @@ struct StateEvent
     int command; // What to do
     std::string name; // Name of state
 };
+
+}
 
 #endif

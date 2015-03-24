@@ -4,6 +4,9 @@
 #include "soundplayer.h"
 #include <iostream>
 
+namespace ng
+{
+
 const cfg::File::ConfigMap SoundPlayer::defaultOptions = {
 {"", {
     {"volume", cfg::makeOption(100, 0, 100)},
@@ -69,4 +72,6 @@ void SoundPlayer::setVolume(float vol)
 void SoundPlayer::setMaxSounds(unsigned maxSounds)
 {
     playingSounds.resize(maxSounds);
+}
+
 }

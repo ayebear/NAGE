@@ -6,6 +6,9 @@
 
 #include <vector>
 
+namespace ng
+{
+
 /*
 This class lets you easily create resizable 2D arrays.
 It uses a single vector, which is more efficient than having a vector of vectors, because memory is only allocated once.
@@ -114,5 +117,7 @@ class Matrix
         unsigned matrixHeight;
         unsigned matrixSize;
 };
+
+}
 
 #endif

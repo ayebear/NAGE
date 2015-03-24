@@ -7,6 +7,9 @@
 #include <SFML/Graphics.hpp>
 #include <map>
 
+namespace ng
+{
+
 /*
 Manages resources for textures and sprites.
 Resources can be accessed with a unique string key.
@@ -59,5 +62,7 @@ class SpriteLoader
         static std::map<std::string, sf::Texture> textures;
         std::map<std::string, sf::Sprite> sprites;
 };
+
+}
 
 #endif

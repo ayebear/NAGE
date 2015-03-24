@@ -7,6 +7,9 @@
 #include <SFML/System.hpp>
 #include "stateevent.h"
 
+namespace ng
+{
+
 /*
 This is a generic base class for all types of game states.
 The state manager uses this polymorphically to switch between states.
@@ -30,12 +33,14 @@ class BaseState
         virtual void draw() = 0;
 
     protected:
-        StateEvent stateEvent;
+        ng::StateEvent stateEvent;
         float dt;
         static const float dtMax;
 
     private:
         sf::Clock clock;
 };
+
+}
 
 #endif
