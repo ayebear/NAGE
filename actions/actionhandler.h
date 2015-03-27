@@ -9,16 +9,25 @@
 #include "action.h"
 #include "configfile.h"
 
+// Macro for binding action callbacks more easily
+#define ng_bindAction(actions, callback) actions[#callback].setCallback([&]{callback();})
+
 namespace ng
 {
 
 /*
 This class handles SFML input and maps it to "actions" based on the input.
 An action can trigger a callback.
+Actions can be checked for real-time input as well.
 
 Creating/updating actions is simple:
 ng::ActionHandler actions;
 actions["action"] = "Input";
+
+The input format supports the following event types:
+    Pressed (triggers callback when keys are pressed)
+    Released (triggers callback when keys are released)
+    Held (is active when a key is held)
 
 Also supports loading actions from config files:
 controls.cfg:
@@ -28,10 +37,18 @@ controls.cfg:
 actions.loadFromConfig("controls.cfg");
 
 After loading actions, you'll have to bind callbacks:
-actions["action"].setCallback(someFunction);
+actions["someAction"].setCallback(someAction);
+ng_bindAction(actions, someAction);
+(Note: Both lines above are equivalent. The macro makes it easier for use with class methods.)
 
 For the actions to be triggered, just pass events to it in a loop:
 actions.handleEvent(event);
+
+Alternatively, you can check if an action is active:
+if (actions["someAction"].isActive())
+{
+    // Do something
+}
 */
 class ActionHandler
 {
