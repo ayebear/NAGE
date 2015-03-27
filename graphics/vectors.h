@@ -37,21 +37,21 @@ float distance(const sf::Vector2<T>& vecStart, const sf::Vector2<T>& vecEnd)
 template <typename T>
 T normalize(sf::Vector2<T>& vec)
 {
-	auto len = length(vec);
-	if (len != 0)
-	{
+    auto len = length(vec);
+    if (len != 0)
+    {
         vec.x /= len;
         vec.y /= len;
-	}
-	return len;
+    }
+    return len;
 }
 
 // Returns the unit vector of a vector.
 template <typename T>
 sf::Vector2f normalized(sf::Vector2<T> vec)
 {
-	normalize(vec);
-	return vec;
+    normalize(vec);
+    return vec;
 }
 
 template <typename T1, typename T2>
