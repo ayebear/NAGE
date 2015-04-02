@@ -16,13 +16,15 @@ TileMap::TileMap()
 bool TileMap::loadFromConfig(const std::string& filename)
 {
     cfg::File config(filename, cfg::File::Warnings | cfg::File::Errors);
-    return (config && loadTileset(config("texture"), config("tileWidth").toInt(), config("tileHeight").toInt()));
+    return (config && loadTileset(config("texture"), config("tileWidth").toInt(),
+            config("tileHeight").toInt(), config("totalTypes").toInt()));
 }
 
-bool TileMap::loadTileset(const std::string& filename, unsigned tileWidth, unsigned tileHeight)
+bool TileMap::loadTileset(const std::string& filename, unsigned tileWidth, unsigned tileHeight, unsigned types)
 {
     tileSize.x = tileWidth;
     tileSize.y = tileHeight;
+    totalTypes = types;
     return texture.loadFromFile(filename);
 }
 
@@ -119,6 +121,11 @@ void TileMap::setColor(const sf::Color& color)
 {
     vertexColor = color;
     applyColor();
+}
+
+unsigned TileMap::getTotalTypes() const
+{
+    return totalTypes;
 }
 
 void TileMap::drawLayer(sf::RenderTarget& target, int layer)

@@ -12,11 +12,6 @@ namespace ng
 {
 
 /*
-TODO:
-    Change the order of stored vertices so they are contiguous (left to right)
-*/
-
-/*
 This class handles storing and drawing a visual map of tiles.
 Tiles are represented with an ID
 The tile size and map size can be set.
@@ -36,7 +31,7 @@ class TileMap: public sf::Drawable, public sf::Transformable
         bool loadFromConfig(const std::string& filename);
 
         // Loads a texture to use for the tile set
-        bool loadTileset(const std::string& filename, unsigned tileWidth, unsigned tileHeight);
+        bool loadTileset(const std::string& filename, unsigned tileWidth, unsigned tileHeight, unsigned types = 0);
 
         // Resizes all of the layers to the same size
         void resize(unsigned width, unsigned height);
@@ -78,6 +73,9 @@ class TileMap: public sf::Drawable, public sf::Transformable
         // Applies a color to all vertices
         void setColor(const sf::Color& color);
 
+        // Returns total number of unique visual IDs
+        unsigned getTotalTypes() const;
+
         // Draws a single layer of the tile map
         void drawLayer(sf::RenderTarget& target, int layer);
 
@@ -95,7 +93,8 @@ class TileMap: public sf::Drawable, public sf::Transformable
         void resize(TileLayer& layer);
         void applyColor();
 
-        unsigned totalTiles;
+        unsigned totalTiles; // Total # of tiles in 1 layer
+        unsigned totalTypes; // Unique visual IDs
         sf::Vector2u mapSize; // In # of tiles
         sf::Vector2u tileSize; // In pixels
         sf::Texture texture; // The tile set
