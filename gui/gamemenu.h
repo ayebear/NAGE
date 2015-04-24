@@ -42,9 +42,12 @@ class GameMenu: public sf::Drawable
 
         using CallbackType = std::function<void()>;
 
-        // Setup
+        // Setup and adding/accessing menu items
         GameMenu(sf::RenderWindow& window, const std::string& configFilename);
-        void addItem(const std::string& name, CallbackType callback);
+        size_t addItem(const std::string& name, CallbackType callback);
+        void setLabel(size_t index, const std::string& name);
+        const std::string& getLabel(size_t index) const;
+        void setEnabled(size_t index, bool state);
 
         // These should be called while running
         void handleEvent(const sf::Event& event);
@@ -65,14 +68,6 @@ class GameMenu: public sf::Drawable
         // Returns the new "ratio" or point in time of the animation
         float updateDt(float& itemDt, float dt, float animTime, bool hovered);
 
-        // Returns an alternate value when dividing by 0
-        template <class Type> Type safeDivide(Type a, Type b, Type c) const
-        {
-            if (b)
-                return (a / b);
-            return c;
-        }
-
         struct MenuItem
         {
             MenuItem(const std::string& name, CallbackType callback);
@@ -81,8 +76,9 @@ class GameMenu: public sf::Drawable
             sf::Text label;
             std::string name;
             CallbackType callback;
-            float dt;
-            float dtText;
+            float dt{0.0f};
+            float dtText{0.0f};
+            bool enabled{true};
         };
 
         struct ButtonSettings

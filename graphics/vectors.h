@@ -14,7 +14,7 @@ Contains commonly used vector math for SFML's 2D vectors.
 namespace ng
 {
 
-namespace vectors
+namespace vec
 {
 
 constexpr double PI = 3.141592653589793238463;
@@ -71,7 +71,7 @@ inline double rotateAngle(double angle, double amount)
     return fmod(angle + amount, 360.0);
 }
 
-};
+}
 
 }
 

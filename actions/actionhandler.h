@@ -10,7 +10,7 @@
 #include "configfile.h"
 
 // Macro for binding action callbacks more easily
-#define ng_bindAction(actions, callback) actions[#callback].setCallback([&]{callback();})
+#define ngBindAction(actions, callback) actions[#callback].setCallback([&]{callback();})
 
 namespace ng
 {
@@ -37,8 +37,8 @@ controls.cfg:
 actions.loadFromConfig("controls.cfg");
 
 After loading actions, you'll have to bind callbacks:
-actions["someAction"].setCallback(someAction);
-ng_bindAction(actions, someAction);
+actions["someAction"].setCallback(std::bind(&MyClass::someAction, this));
+ngBindAction(actions, someAction);
 (Note: Both lines above are equivalent. The macro makes it easier for use with class methods.)
 
 For the actions to be triggered, just pass events to it in a loop:

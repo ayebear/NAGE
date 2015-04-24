@@ -3,6 +3,7 @@
 
 #include "gamemenu.h"
 #include "nage/graphics/vectors.h"
+#include "nage/misc/utils.h"
 #include "configfile.h"
 #include <iostream>
 
@@ -19,10 +20,35 @@ GameMenu::GameMenu(sf::RenderWindow& window, const std::string& configFilename):
     loadSettings(configFilename);
 }
 
-void GameMenu::addItem(const std::string& name, CallbackType callback)
+size_t GameMenu::addItem(const std::string& name, CallbackType callback)
 {
     menuItems.emplace_back(name, callback);
     menuItems.back().label.setFont(font);
+    return (menuItems.size() - 1);
+}
+
+void GameMenu::setLabel(size_t index, const std::string& name)
+{
+    if (index < menuItems.size())
+    {
+        auto& item = menuItems[index];
+        item.name = name;
+        item.label.setString(name);
+    }
+}
+
+const std::string& GameMenu::getLabel(size_t index) const
+{
+    if (index < menuItems.size())
+        return menuItems[index].name;
+    return ng::emptyStr;
+}
+
+void GameMenu::setEnabled(size_t index, bool state)
+{
+    // TODO: Change colors and reset dt's as well
+    if (index < menuItems.size())
+        menuItems[index].enabled = state;
 }
 
 void GameMenu::handleEvent(const sf::Event& event)
@@ -120,10 +146,14 @@ void GameMenu::mapMousePos(const sf::Vector2i& pos)
 
 void GameMenu::selectMenuItem(int index)
 {
-    currentItem = index;
-    // Execute callback of menu item
-    if (index != NO_SELECTION)
-        menuItems[index].callback();
+    if (menuItems[index].enabled)
+    {
+        currentItem = index;
+
+        // Execute callback of menu item
+        if (index != NO_SELECTION)
+            menuItems[index].callback();
+    }
 }
 
 void GameMenu::loadSettings(const std::string& filename)
@@ -132,21 +162,21 @@ void GameMenu::loadSettings(const std::string& filename)
 
     // Load actions
     actions.loadSection(config.getSection("Controls"));
-    actions["select"].setCallback([&](){selectMenuItem(currentItem);});
-    actions["moveUp"].setCallback(std::bind(&GameMenu::moveUp, this));
-    actions["moveDown"].setCallback(std::bind(&GameMenu::moveDown, this));
+    actions["select"].setCallback([&](){ selectMenuItem(currentItem); });
+    ngBindAction(actions, moveUp);
+    ngBindAction(actions, moveDown);
 
     // Load general settings
     SpriteLoader::load(backgroundSprite, config("backgroundImage"), true);
     SpriteLoader::load(foregroundSprite, config("foregroundImage"), true);
-    transitionTime = config("transitionTime").toFloat();
-    textTransitionTime = config("textTransitionTime").toFloat();
-    padding = config("padding").toInt();
-    textPaddingTop = config("textPaddingTop").toInt();
     font.loadFromFile(config("fontFile"));
-    width = config("buttonWidth").toInt();
-    height = config("buttonHeight").toInt();
-    fontSize = config("fontSize").toInt();
+    config("transitionTime") >> transitionTime;
+    config("textTransitionTime") >> textTransitionTime;
+    config("padding") >> padding;
+    config("textPaddingTop") >> textPaddingTop;
+    config("buttonWidth") >> width;
+    config("buttonHeight") >> height;
+    config("fontSize") >> fontSize;
 
     // Load button settings
     unsigned index = 0;
@@ -154,7 +184,7 @@ void GameMenu::loadSettings(const std::string& filename)
     {
         auto& settings = buttonSettings[index++];
         config.useSection(section);
-        settings.outlineThickness = config("outlineThickness").toInt();
+        config("outlineThickness") >> settings.outlineThickness;
         settings.colorFill = config("colorFill");
         settings.colorOutline = config("colorOutline");
         settings.fontColor = config("fontColor");
@@ -163,14 +193,14 @@ void GameMenu::loadSettings(const std::string& filename)
     // Calculate positions and text padding
     config.useSection();
     firstButton.x = (viewSize.x - width) / 2;
-    firstButton.y = config("firstButtonOffset").toInt();
+    config("firstButtonOffset") >> firstButton.y;
 
     // Center foreground sprite
     int foregroundWidth = foregroundSprite.getTexture()->getSize().x;
     foregroundSprite.setPosition((viewSize.x - foregroundWidth) / 2, 0);
 
     // Center and scale background sprite
-    auto backgroundSize = vectors::cast<int>(backgroundSprite.getTexture()->getSize());
+    auto backgroundSize = vec::cast<int>(backgroundSprite.getTexture()->getSize());
     backgroundSprite.setPosition((viewSize.x - backgroundSize.x) / 2, (viewSize.y - backgroundSize.y) / 2);
 }
 
@@ -213,19 +243,15 @@ float GameMenu::updateDt(float& itemDt, float dt, float animTime, bool hovered)
         itemDt -= dt;
 
     // Keep the dt value in bounds of the animation
-    if (itemDt < 0)
-        itemDt = 0;
-    if (itemDt > animTime)
-        itemDt = animTime;
+    ng::clamp(itemDt, 0.0f, animTime);
 
-    return safeDivide(itemDt, animTime, float(hovered));
+    // Return the new point in time of the animation
+    return ng::safeDivide<float>(itemDt, animTime, hovered);
 }
 
 GameMenu::MenuItem::MenuItem(const std::string& name, CallbackType callback):
     name(name),
-    callback(callback),
-    dt(0),
-    dtText(0)
+    callback(callback)
 {
     label.setString(name);
 }
