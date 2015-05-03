@@ -10,7 +10,7 @@ namespace ng
 
 bool Action::windowHasFocus = true;
 
-const std::map<std::string, sf::Keyboard::Key> Action::strToKey = {
+const Action::KeyMap Action::strToKey = {
     {"unknown", sf::Keyboard::Unknown},
     {"a", sf::Keyboard::A},
     {"b", sf::Keyboard::B},

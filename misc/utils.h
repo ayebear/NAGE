@@ -4,11 +4,14 @@
 #ifndef UTILS_H_INCLUDED
 #define UTILS_H_INCLUDED
 
-namespace ng
-{
-
 // Creates an std::function of most methods of type void(void)
 #define ngBind(method) [&](){ method(); }
+
+// Creates for loops with ranges
+#define forRange(var, start, end) for (long var = (start); var < (end); ++var)
+
+namespace ng
+{
 
 static const std::string emptyStr{""};
 

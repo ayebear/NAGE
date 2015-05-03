@@ -59,7 +59,8 @@ class Action
         sf::Event::KeyEvent getKeyEvent(const std::string& keyCombo) const;
 
         // Used to map string names to key codes
-        static const std::map<std::string, sf::Keyboard::Key> strToKey;
+        using KeyMap = std::map<std::string, sf::Keyboard::Key>;
+        static const KeyMap strToKey;
 
         CallbackType callback;
         sf::Event::EventType type; // Pressed/released

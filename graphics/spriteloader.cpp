@@ -83,8 +83,6 @@ sf::Texture& SpriteLoader::loadTexture(const std::string& filename, bool& status
         else
             std::cout << " Error!\n";
     }
-    else
-        std::cout << "Already loaded, skipping: " << filename << "\n";
     return texture;
 }
 
