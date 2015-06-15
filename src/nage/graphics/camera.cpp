@@ -1,7 +1,7 @@
 // Copyright (C) 2014-2015 Eric Hebert (ayebear)
 // This code is licensed under LGPLv3, see LICENSE.txt for details.
 
-#include "camera.h"
+#include "nage/graphics/camera.h"
 
 namespace ng
 {

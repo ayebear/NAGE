@@ -1,7 +1,7 @@
 // Copyright (C) 2014-2015 Eric Hebert (ayebear)
 // This code is licensed under LGPLv3, see LICENSE.txt for details.
 
-#include "gamemenu.h"
+#include "nage/gui/gamemenu.h"
 #include "nage/graphics/vectors.h"
 #include "nage/misc/utils.h"
 #include "configfile.h"
