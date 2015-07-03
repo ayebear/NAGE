@@ -30,7 +30,7 @@ void MusicPlayer::loadListFromConfig(const std::string& configPath)
 {
     // Load the music sets from the config file into the map
     songs.clear();
-    cfg::File musicConfig(configPath, defaultOptions, cfg::File::Warnings | cfg::File::Errors);
+    cfg::File musicConfig(configPath, defaultOptions);
     setVolume(musicConfig("volume").toFloat());
     setShuffle(musicConfig("shuffle").toBool());
     for (auto& arr: musicConfig.getSection("Music"))

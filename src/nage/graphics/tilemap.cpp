@@ -15,7 +15,7 @@ TileMap::TileMap()
 
 bool TileMap::loadFromConfig(const std::string& filename)
 {
-    cfg::File config(filename, cfg::File::Warnings | cfg::File::Errors);
+    cfg::File config(filename);
     return (config && loadTileset(config("texture"), config("tileWidth").toInt(),
             config("tileHeight").toInt(), config("totalTypes").toInt()));
 }
