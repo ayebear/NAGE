@@ -17,14 +17,15 @@ bool TileMap::loadFromConfig(const std::string& filename)
 {
     cfg::File config(filename);
     return (config && loadTileset(config("texture"), config("tileWidth").toInt(),
-            config("tileHeight").toInt(), config("totalTypes").toInt()));
+            config("tileHeight").toInt(), config("totalTypes").toInt(), config("padding").toInt()));
 }
 
-bool TileMap::loadTileset(const std::string& filename, unsigned tileWidth, unsigned tileHeight, unsigned types)
+bool TileMap::loadTileset(const std::string& filename, unsigned tileWidth, unsigned tileHeight, unsigned types, unsigned padding)
 {
     tileSize.x = tileWidth;
     tileSize.y = tileHeight;
     totalTypes = types;
+    tilePadding = padding;
     return texture.loadFromFile(filename);
 }
 
@@ -65,10 +66,14 @@ void TileMap::set(unsigned x, unsigned y, unsigned value)
 
         // Setup the texture coordinates
         sf::Vertex* quad = &currentLayer->vertices[(x + y * mapSize.x) * 4];
-        quad[0].texCoords = sf::Vector2f(tilesetPos.x * tileSize.x, tilesetPos.y * tileSize.y);
-        quad[1].texCoords = sf::Vector2f((tilesetPos.x + 1) * tileSize.x, tilesetPos.y * tileSize.y);
-        quad[2].texCoords = sf::Vector2f((tilesetPos.x + 1) * tileSize.x, (tilesetPos.y + 1) * tileSize.y);
-        quad[3].texCoords = sf::Vector2f(tilesetPos.x * tileSize.x, (tilesetPos.y + 1) * tileSize.y);
+        quad[0].texCoords = sf::Vector2f(tilesetPos.x * (tileSize.x + tilePadding) + tilePadding,
+                                         tilesetPos.y * (tileSize.y + tilePadding) + tilePadding);
+        quad[1].texCoords = sf::Vector2f((tilesetPos.x + 1) * (tileSize.x + tilePadding),
+                                          tilesetPos.y * (tileSize.y + tilePadding) + tilePadding);
+        quad[2].texCoords = sf::Vector2f((tilesetPos.x + 1) * (tileSize.x + tilePadding),
+                                         (tilesetPos.y + 1) * (tileSize.y + tilePadding));
+        quad[3].texCoords = sf::Vector2f(tilesetPos.x * (tileSize.x + tilePadding) + tilePadding,
+                                        (tilesetPos.y + 1) * (tileSize.y + tilePadding));
     }
 }
 

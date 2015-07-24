@@ -40,7 +40,7 @@ void Camera::setCenter(const sf::Vector2f& center)
             offset.x *= 0.5 * scale;
             offset.y *= 0.5 * scale;
         }
-        view.second.view.setCenter(center.x * scale + offset.x, center.y * scale + offset.y);
+        view.second.view.setCenter(static_cast<int>(center.x * scale + offset.x), static_cast<int>(center.y * scale + offset.y));
     }
 }
 

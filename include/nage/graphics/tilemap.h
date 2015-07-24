@@ -31,7 +31,7 @@ class TileMap: public sf::Drawable, public sf::Transformable
         bool loadFromConfig(const std::string& filename);
 
         // Loads a texture to use for the tile set
-        bool loadTileset(const std::string& filename, unsigned tileWidth, unsigned tileHeight, unsigned types = 0);
+        bool loadTileset(const std::string& filename, unsigned tileWidth, unsigned tileHeight, unsigned types = 0, unsigned padding = 0);
 
         // Resizes all of the layers to the same size
         void resize(unsigned width, unsigned height);
@@ -95,6 +95,7 @@ class TileMap: public sf::Drawable, public sf::Transformable
 
         unsigned totalTiles; // Total # of tiles in 1 layer
         unsigned totalTypes; // Unique visual IDs
+        unsigned tilePadding; // Amount of padding in pixels
         sf::Vector2u mapSize; // In # of tiles
         sf::Vector2u tileSize; // In pixels
         sf::Texture texture; // The tile set
