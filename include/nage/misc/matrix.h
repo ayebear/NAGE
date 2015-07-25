@@ -71,6 +71,11 @@ class Matrix
             return elements[(y * matrixWidth) + x];
         }
 
+        const Type& operator()(unsigned x, unsigned y) const
+        {
+            return elements[(y * matrixWidth) + x];
+        }
+
         unsigned width() const
         {
             return matrixWidth;
