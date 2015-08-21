@@ -2,7 +2,7 @@
 // This code is licensed under LGPLv3, see LICENSE.txt for details.
 
 #include "nage/graphics/spriteloader.h"
-#include "configfile.h"
+#include <configfile.h>
 #include <iostream>
 
 namespace ng

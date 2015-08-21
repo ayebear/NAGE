@@ -8,7 +8,7 @@
 #include <vector>
 #include <map>
 #include <SFML/Graphics.hpp>
-#include "configfile.h"
+#include <configfile.h>
 
 namespace ng
 {

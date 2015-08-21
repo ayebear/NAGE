@@ -7,7 +7,7 @@
 #include <string>
 #include <map>
 #include "action.h"
-#include "configfile.h"
+#include <configfile.h>
 
 // Macro for binding action callbacks more easily
 #define ngBindAction(actions, callback) actions[#callback].setCallback([&]{callback();})

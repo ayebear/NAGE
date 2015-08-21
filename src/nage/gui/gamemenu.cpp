@@ -4,7 +4,7 @@
 #include "nage/gui/gamemenu.h"
 #include "nage/graphics/vectors.h"
 #include "nage/misc/utils.h"
-#include "configfile.h"
+#include <configfile.h>
 #include <iostream>
 
 namespace ng

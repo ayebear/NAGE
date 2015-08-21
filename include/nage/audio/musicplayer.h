@@ -8,7 +8,7 @@
 #include <vector>
 #include <map>
 #include <SFML/Audio.hpp>
-#include "configfile.h"
+#include <configfile.h>
 
 namespace ng
 {

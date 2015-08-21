@@ -4,6 +4,7 @@
 #include "nage/audio/musicplayer.h"
 #include <iostream>
 #include <algorithm>
+#include <random>
 
 namespace ng
 {
