@@ -4,6 +4,8 @@
 #ifndef UTILS_H_INCLUDED
 #define UTILS_H_INCLUDED
 
+#include <string>
+
 // Creates an std::function of most methods of type void(void)
 #define ngBind(method) [&](){ method(); }
 
@@ -61,6 +63,14 @@ template <typename T>
 bool approxEqual(T val1, T val2, T tolerance = 0.01)
 {
     return (val1 + tolerance >= val2 && val1 - tolerance <= val2);
+}
+
+template <typename T>
+T interpolate(T start, T end, float ratio)
+{
+    clamp<float>(ratio, 0.0f, 1.0f);
+    T change = (start - end) * ratio;
+    return (start - change);
 }
 
 }
