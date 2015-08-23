@@ -55,6 +55,14 @@ bool clamp(T& val, T min, T max)
     return (clampLT(val, min) || clampGT(val, max));
 }
 
+// Returns true if a float/double is approximately equal within a certain tolerance range
+// Tolerance is +/-, so a tolerance of 0.01 will be a total tolerance range of 0.02
+template <typename T>
+bool approxEqual(T val1, T val2, T tolerance = 0.01)
+{
+    return (val1 + tolerance >= val2 && val1 - tolerance <= val2);
+}
+
 }
 
 #endif
