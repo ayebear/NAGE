@@ -14,10 +14,10 @@ Contains commonly used vector math for SFML's 2D vectors.
 namespace ng
 {
 
+constexpr double PI = 3.1415926535897932385;
+
 namespace vec
 {
-
-constexpr double PI = 3.1415926535897932385;
 
 // Calculates the length of a vector
 template <typename T>
